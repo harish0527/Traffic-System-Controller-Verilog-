@@ -1,0 +1,16 @@
+module tsc_tb;
+reg clk,rst;
+wire STOP,READY,GO;
+
+tsc t1(clk,rst,STOP,READY,GO);
+
+always #10 clk = ~clk;
+initial
+begin
+clk = 1;rst = 1;
+#20 rst = 0;
+#50000 $finish;
+end
+initial
+$monitor("STOP = %d , REDAY = %d , GO = %d",STOP,READY,GO);
+endmodule
